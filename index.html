@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Predictor Pro</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #161b22;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            width: 340px;
+            text-align: center;
+            border: 1px solid #30363d;
+        }
+        h2 {
+            color: #58a6ff;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .status {
+            background: #21262d;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #8b949e;
+        }
+        .grid-section {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .box {
+            flex: 1;
+            background: #090c10;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+        }
+        .box h4 {
+            margin: 0 0 5px 0;
+            font-size: 12px;
+            color: #8b949e;
+        }
+        .val {
+            font-size: 16px;
+            font-weight: bold;
+            color: #3fb950;
+        }
+        .number-box {
+            font-size: 22px;
+            font-weight: bold;
+            color: #f85149;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: #090c10;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+        }
+        button {
+            background-color: #238636;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #2ea043;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>AI Predictor Panel</h2>
+        <div class="status" id="statusText">Status: Ready</div>
+        
+        <div class="number-box" id="numResult">Number: --</div>
+
+        <div class="grid-section">
+            <div class="box">
+                <h4>SIZE</h4>
+                <div class="val" id="sizeResult">--</div>
+            </div>
+            <div class="box">
+                <h4>COLOR</h4>
+                <div class="val" id="colorResult">--</div>
+            </div>
+        </div>
+
+        <button onclick="startPrediction()">EXECUTE</button>
+    </div>
+
+    <script>
+        function startPrediction() {
+            const statusText = document.getElementById("statusText");
+            const sizeResult = document.getElementById("sizeResult");
+            const colorResult = document.getElementById("colorResult");
+            const numResult = document.getElementById("numResult");
+            
+            statusText.innerText = "Status: Scanning...";
+            sizeResult.innerText = "...";
+            colorResult.innerText = "...";
+            numResult.innerText = "Number: ...";
+            
+            setTimeout(() => {
+                // Random number 0 to 9
+                const randNum = Math.floor(Math.random() * 10);
+                
+                // Determine Size (0-4 is Small, 5-9 is Big)
+                const size = randNum >= 5 ? "BIG 🟢" : "SMALL 🔴";
+                
+                // Determine Color based on number standard logic
+                let color = "";
+                if (randNum === 0) color = "Red/Violet";
+                else if (randNum === 5) color = "Green/Violet";
+                else if (randNum % 2 === 0) color = "RED 🔴";
+                else color = "GREEN 🟢";
+                
+                statusText.innerText = "Status: Success";
+                numResult.innerText = "Number: " + randNum;
+                sizeResult.innerText = size;
+                colorResult.innerText = color;
+            }, 1200);
+        }
+    </script>
+
+</body>
+</html>
